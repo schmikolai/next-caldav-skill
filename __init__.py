@@ -26,13 +26,11 @@ class NextCaldav(MycroftSkill):
 			self.speak("I am sorry, I couldn't load your calendar. Please check your configuration.")
 			return
 		if len(events) > 0:
-			self.speak("You have {} events in the next 7 days.".format(len(events)))
-			for event in events[0:3]:
-				self.say_event_info(event)
+			self.speak("You have {} events in the next 7 days.".format(len(events)) + ", ".join([self.prepare_event_info(event) for event in events]))
 		else:
 			self.speak_dialog('caldav.no.events')
 
-	def say_event_info(self, event):
+	def prepare_event_info(self, event):
 		if event["date"] == DT.date.today():
 			daystring = "Today"
 		elif event["date"] == DT.date.today() + DT.timedelta(1):
@@ -45,7 +43,7 @@ class NextCaldav(MycroftSkill):
 		else:
 			timestring = ""
 
-		self.speak("{} {} is {}".format(daystring, timestring, event["title"]))
+		return "{} {} is {}".format(daystring, timestring, event["title"])
 
 def create_skill():
 	return NextCaldav()
