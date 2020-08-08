@@ -1,4 +1,5 @@
 import os
+import platform
 from mycroft import MycroftSkill, intent_file_handler
 from dotenv import load_dotenv
 from cal import get_calendar_events
@@ -9,7 +10,9 @@ class NextCaldav(MycroftSkill):
         MycroftSkill.__init__(self)
 
     def initialize(self):
+        print("Initializing Caldav skill")
         load_dotenv()
+        print(os.environ["UNAME"])
 
     @intent_file_handler('caldav.next.intent')
     def handle_caldav_next(self, message):
