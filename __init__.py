@@ -26,7 +26,7 @@ class NextCaldav(MycroftSkill):
 			self.speak("I am sorry, I couldn't load your calendar. Please check your configuration.")
 			return
 		if len(events) > 0:
-			self.speak("You have {} events in the next 7 days.".format(len(events)) + ", ".join([self.prepare_event_info(event) for event in events]))
+			self.speak("You have {} events in the next 7 days. ".format(len(events)) + ", ".join([self.prepare_event_info(event) for event in events]))
 		else:
 			self.speak_dialog('caldav.no.events')
 

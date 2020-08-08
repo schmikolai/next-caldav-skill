@@ -10,7 +10,6 @@ def parse_caldav_data(caldav_data):
 	print('=================')
 	context = obj
 	for line in lines:
-		print(line)
 		if line.startswith('BEGIN:'):
 			context[line[6:]] = {"parent": context}
 			context = context[line[6:]]
@@ -18,6 +17,8 @@ def parse_caldav_data(caldav_data):
 			context = context['parent']
 		else:
 			context[line[:line.index(':')]] = line[line.index(':')+1:]
+
+	print(obj)
 
 	result = {}
 
