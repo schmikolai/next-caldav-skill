@@ -48,10 +48,6 @@ def get_calendar_events():
 	my_principal = client.principal()
 	calendars = my_principal.calendars()
 	if calendars:
-		# Some calendar servers will include all calendars you have
-		# access to in this list, and not only the calendars owned by
-		# this principal.  TODO: see if it's possible to find a list of
-		# calendars one has access to.
 		print("your principal has %i calendars:" % len(calendars))
 		for c in calendars:
 			print("    Name: %-20s  URL: %s" % (c.name, c.url))
