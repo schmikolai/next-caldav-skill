@@ -2,6 +2,8 @@ import os
 import platform
 from mycroft import MycroftSkill, intent_file_handler
 from dotenv import load_dotenv
+import sys
+sys.path.append(os.path.dirname(__file__))
 from cal import get_calendar_events
 
 
