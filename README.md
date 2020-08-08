@@ -17,7 +17,7 @@ Navigate to the directory, where the skill was installed. If not otherwise speci
 
 Run the configuration script:
 ```
-python config.py
+python3 config.py
 ```
 Enter the the adress to your Nextcloud server, other systems with the CalDAV protocol may work, too.  
 Enter you login information of that Nextcloud server.  
