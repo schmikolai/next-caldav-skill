@@ -13,6 +13,7 @@ class NextCaldav(MycroftSkill):
 
     @intent_file_handler('caldav.next.intent')
     def handle_caldav_next(self, message):
+        self.speak("I am checking your calendar.")
         events = get_calendar_events()
         if len(events) > 0:
             self.speak("You have {} events in the next 7 days.".format(len(events)))
