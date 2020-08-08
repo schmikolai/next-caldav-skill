@@ -3,18 +3,22 @@ import caldav
 import os
 import json
 
-
+# Parse answer from caldav library to usable format
 def parse_caldav_data(caldav_data):
 	lines = caldav_data.split("\r\n")
+	# obj will hold a hierarchical caldav data
 	obj = {}
 	print('=================')
 	context = obj
 	for line in lines:
+		# Add a layer to the hierachy
 		if line.startswith('BEGIN:'):
 			context[line[6:]] = {"parent": context}
 			context = context[line[6:]]
+		# Go one layer up in the hierachy
 		elif line.startswith('END:'):
 			context = context['parent']
+		# Add data to the current node
 		else:
 			context[line[:line.index(':')]] = line[line.index(':')+1:]
 
@@ -22,12 +26,16 @@ def parse_caldav_data(caldav_data):
 
 	result = {}
 
+	# find the actual relevant part of the event data
 	event = obj["VCALENDAR"]["VEVENT"]
 
+	# store the title of the event
 	if event["SUMMARY"]:
 		result["title"] = event["SUMMARY"]
 
+	# find the beginning of the event
 	for key in event:
+		# key always starts with DTSTART, but differs for events with specific time, or whole day
 		if key.startswith("DTSTART"):
 			timestamp = event[key]
 			result["date"] = DT.date(int(timestamp[:4]), int(timestamp[4:6]), int(timestamp[6:8]))
@@ -36,12 +44,13 @@ def parse_caldav_data(caldav_data):
 
 	return result
 
-
+# used to retreive parsed caldav event data
 def get_calendar_events():
 	url = os.environ["CALDAV_ADRESS"]
 	username = os.environ["UNAME"]
 	password = os.environ["PWORD"]
 
+	# initialize the caldav client
 	client = caldav.DAVClient(url=url, username=username, password=password)
 
 	all_events = []
