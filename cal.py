@@ -38,7 +38,7 @@ def parse_caldav_data(caldav_data):
 
 
 def get_calendar_events():
-	url = "https://next.social-robot.info/nc/remote.php/dav"
+	url = os.environ["CALDAV_ADRESS"]
 	username = os.environ["UNAME"]
 	password = os.environ["PWORD"]
 

@@ -16,6 +16,7 @@ class NextCaldav(MycroftSkill):
 		print("Initializing Caldav skill")
 		load_dotenv()
 		print(os.environ["UNAME"])
+		print(os.environ["CALDAV_ADRESS"])
 
 	@intent_file_handler('caldav.next.intent')
 	def handle_caldav_next(self, message):
