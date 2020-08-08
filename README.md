@@ -1,4 +1,4 @@
-# <img src="https://raw.githack.com/FortAwesome/Font-Awesome/master/svgs/solid/calendar-day.svg" card_color="#0082C9" width="50" height="50" style="vertical-align:bottom"/> Next Webdav
+# <img src="https://raw.githack.com/FortAwesome/Font-Awesome/master/svgs/solid/calendar-day.svg" card_color="#0082C9" width="50" height="50" style="vertical-align:bottom"/> Next CalDAV
 Retreives appointments from nextcloud calendar
 
 ## About
